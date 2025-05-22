@@ -2,7 +2,7 @@
   "profiles": {
     "update_modified": {
       "commandName": "Project",
-      "commandLineArgs": "-v --with-library \"C:\\Users\\smithti\\Documents\\Book Work\\base\" -o"
+      "commandLineArgs": "-v"
     }
   }
 }

@@ -154,7 +154,7 @@ namespace update_modified
                 }
                 else
                 {
-                    if (fileDate > modified)
+                    if (fileDate > checkDate)
                     {
                         checkDate = fileDate;
                     }
