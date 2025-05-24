@@ -41,11 +41,11 @@ namespace update_modified
             process.StartInfo.FileName = "calibredb";
             if (!IsNullOrWhiteSpace( databasePath ))
             {
-                process.StartInfo.Arguments = "--with-library=\"" + databasePath + "\" list -f last_modified,formats --for-machine";
+                process.StartInfo.Arguments = "--with-library=\"" + databasePath + "\" list -f last_modified,formats,cover --for-machine";
             }
             else
             {
-                process.StartInfo.Arguments = "list -f last_modified,formats --for-machine";
+                process.StartInfo.Arguments = "list -f last_modified,formats,cover --for-machine";
             }
             if (verbose) Console.WriteLine( "Executing: calibredb " + process.StartInfo.Arguments );
             process.StartInfo.UseShellExecute = false;
@@ -298,6 +298,12 @@ Options:
                 int id = book.id;
 
                 DateTime modified = book.last_modified.ToUniversalTime();
+
+                if ((book.formats.Length == 0) && !IsNullOrWhiteSpace( book.cover ))
+                {
+                    book.formats = new string[1];
+                    book.formats[0] = book.cover;
+                }
 
                 if (book.formats.Length == 0)
                 {
